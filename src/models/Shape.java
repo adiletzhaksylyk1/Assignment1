@@ -7,7 +7,7 @@ public class Shape {
 
     ArrayList<Point> points;
 
-    {
+    public Shape() {
         points = new ArrayList<>();
     }
 
@@ -22,14 +22,14 @@ public class Shape {
     public double calculatePerimeter() {
         double perimeter = 0;
 
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
             Point currentPoint = points.get(i);
-            Point nextPoint = points.get((i + 1) % points.size());// continuous loop
+            Point nextPoint = points.get(i + 1);
 
             perimeter += currentPoint.distance(nextPoint);
         }
 
-        return perimeter;
+        return perimeter + points.getFirst().distance(points.getLast());
     }
 
 
@@ -37,14 +37,14 @@ public class Shape {
     public double getAverageSide() {
         double totalLength = 0;
 
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
             Point currentPoint = points.get(i);
-            Point nextPoint = points.get((i + 1) % points.size()); // continuous loop
+            Point nextPoint = points.get(i + 1);
 
             totalLength += currentPoint.distance(nextPoint);
         }
 
-        return totalLength / points.size();
+        return (totalLength + points.getFirst().distance(points.getLast())) / points.size();
     }
 
 
@@ -52,11 +52,12 @@ public class Shape {
     public double getLongestSide() {
         double longestSide = 0;
 
-        for (int i = 0; i < points.size(); i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
             Point currentPoint = points.get(i);
-            Point nextPoint = points.get((i + 1) % points.size());// continuous loop
+            Point nextPoint = points.get(i + 1);
 
             double currentSide = currentPoint.distance(nextPoint);
+
             if (currentSide > longestSide) {
                 longestSide = currentSide;
             }
