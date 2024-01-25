@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Shape {
     // container of Points (e.g. ArrayList<Point>)
 
+    
     ArrayList<Point> points;
 
     public Shape() {
